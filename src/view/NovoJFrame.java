@@ -9,8 +9,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import app.App;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -46,7 +51,7 @@ public class NovoJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Adicionar");
+        jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -55,14 +60,14 @@ public class NovoJFrame extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jList1);
 
-        jButton2.setText("Limpar");
+        jButton2.setText("Reset");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Remover");
+        jButton3.setText("Del");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -70,7 +75,21 @@ public class NovoJFrame extends javax.swing.JFrame {
         });
         
         comboBox = new JComboBox();
-        comboBox.setModel(new DefaultComboBoxModel(new String[] {"I1", "I2", "I3"}));
+        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Presunto", "Frango", "Azeitona"}));
+        
+        JButton btnMontar = new JButton("Montar");
+        btnMontar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+					btnMontarActionPerformed();
+				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+        
+        JLabel lblSelecioneOSabor = new JLabel("Selecione o sabor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -80,26 +99,32 @@ public class NovoJFrame extends javax.swing.JFrame {
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jButton2)
+        					.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jButton1)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jButton3)
         					.addGap(18)
-        					.addComponent(jButton1, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-        					.addGap(18)
-        					.addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(btnMontar, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+        				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblSelecioneOSabor))
         			.addContainerGap())
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
+        			.addComponent(lblSelecioneOSabor)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jButton2)
+        				.addComponent(jButton1)
         				.addComponent(jButton3)
-        				.addComponent(jButton1))
+        				.addComponent(btnMontar))
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         getContentPane().setLayout(layout);
@@ -123,6 +148,12 @@ public class NovoJFrame extends javax.swing.JFrame {
         jList1.setModel(model);        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    private void btnMontarActionPerformed() throws InstantiationException, IllegalAccessException, ClassNotFoundException {//GEN-FIRST:event_jButton3ActionPerformed
+        App.imp(model);
+//        System.out.println(model.toString());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -165,5 +196,4 @@ public class NovoJFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private JComboBox comboBox;
-    // End of variables declaration//GEN-END:variables
 }
